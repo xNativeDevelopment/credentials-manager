@@ -1,0 +1,3 @@
+language = Objective-C
+headers = KeychainProviderInterop.h
+package = dev.xnative.samples.keychain.interop

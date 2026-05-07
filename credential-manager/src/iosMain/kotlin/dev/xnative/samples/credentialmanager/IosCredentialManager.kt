@@ -4,16 +4,16 @@ import dev.xnative.samples.keychain.interop.KeychainProviderInterop
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @OptIn(ExperimentalForeignApi::class)
-class IosCredentialManager(
-    private val keychain: KeychainProviderInterop = KeychainProviderInterop()
-) : CredentialManager {
+internal class IosCredentialManager : CredentialManager {
 
-    override fun save(key: String, value: String): Boolean =
+    private val keychain: KeychainProviderInterop = KeychainProviderInterop()
+
+    override suspend fun save(key: String, value: String): Boolean =
         keychain.writeString(value, forKey = key)
 
-    override fun retrieve(key: String): String? =
+    override suspend fun retrieve(key: String): String? =
         keychain.readStringForKey(key = key)
 
-    override fun delete(key: String): Boolean =
+    override suspend fun delete(key: String): Boolean =
         keychain.deleteValueForKey(key = key)
 }

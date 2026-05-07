@@ -2,5 +2,4 @@ package dev.xnative.samples.credentialmanager
 
 import org.koin.core.scope.Scope
 
-internal actual fun Scope.provideCredentialManager(): CredentialManager =
-    IosCredentialManager()
+internal actual fun Scope.provideCredentialManager(): CredentialManager = IosCredentialManager()

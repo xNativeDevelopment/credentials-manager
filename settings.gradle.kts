@@ -32,3 +32,4 @@ dependencyResolutionManagement {
 }
 
 include(":credential-manager")
+include(":credential-manager-unified")

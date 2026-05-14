@@ -3,10 +3,10 @@ package dev.xnative.samples.credentialmanager
 /**
  * Suspending KMP credential store.
  *
- * Operations are suspending because the underlying DataStore (`androidx.datastore`) exposes a
- * suspending API on every platform — encrypted reads/writes touch the file system and must not
- * run on the calling thread. The shape mirrors the legacy synchronous API one-to-one so call
- * sites only need to add `withContext` / coroutine boundaries, not rethink their data flow.
+ * Operations are suspending because encrypted reads and writes cross disk, crypto, or OS-backed
+ * credential storage. Android uses DataStore and Tink, while iOS delegates to Keychain through
+ * cinterop. The shape mirrors the legacy synchronous API one-to-one so call sites only need to
+ * add coroutine boundaries, not rethink their data flow.
  */
 interface CredentialManager {
 

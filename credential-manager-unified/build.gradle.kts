@@ -45,8 +45,6 @@ kotlin {
             // automatically through the multiplatform metadata of this single coordinate.
             // See "Set up DataStore for KMP" — developer.android.com/kotlin/multiplatform/datastore.
             implementation(libs.androidx.datastore.preferences.core)
-            // OkioStorage is the official KMP storage backend the Android docs recommend on iOS.
-            implementation(libs.okio)
         }
 
         androidMain.dependencies {
@@ -58,6 +56,12 @@ kotlin {
             // on Android. Tink's keyset is itself wrapped by an AndroidKeystore-backed master
             // key (AndroidKeysetManager).
             implementation(libs.tink.android)
+        }
+
+        iosMain.dependencies {
+            // The unified reference keeps DataStore on iOS, where the official KMP guide uses
+            // OkioStorage with an NSDocumentDirectory-backed path.
+            implementation(libs.okio)
         }
     }
 }

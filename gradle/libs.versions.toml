@@ -12,8 +12,9 @@ android-minSdk = "28"
 #   Android side only — iOS reverts to direct Keychain via cinterop (see the divergence flag
 #   `article/orchestration/divergence-flags/01-ios-architecture-revision.md`). The sibling
 #   `credential-manager-unified/` module still uses it on iOS through `OkioStorage`.
-# - okio: required by `OkioStorage` on Android in `credential-manager/`, and by both platforms
-#   in `credential-manager-unified/`.
+# - okio: explicit alias kept for the unified iOS DataStore path, where `OkioStorage` still backs
+#   the `credential-manager-unified/` implementation. The canonical Android module uses DataStore
+#   `FileStorage` and no longer declares the Okio alias directly.
 # - tink: Android-side encryption. Tink Java is JVM/Android only — that's why this version
 #   only feeds androidMain in either module.
 # - androidx-security-crypto stays at the original alpha to seed the legacy migration source —

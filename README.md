@@ -50,7 +50,7 @@ credential-manager/                        single KMP library module
    │   ├─ CredentialMigrationLogger.kt      adaptable logger contract + no-op default
    │   └─ CredentialManagerModule.kt        Koin module entry point + expect provider
    ├─ androidMain/kotlin/.../
-   │   ├─ AndroidCredentialDataStore.kt              OkioStorage + Context.filesDir
+   │   ├─ AndroidCredentialDataStore.kt              FileStorage + Context.filesDir
    │   ├─ CredentialStore.kt                         internal backing-store contract (Android)
    │   ├─ EncryptedPreferencesDataStore.kt           primary store: DataStore + Tink
    │   ├─ LegacyEncryptedSharedPreferencesStore.kt   legacy migration source
@@ -85,7 +85,9 @@ library, not an app.
 - `androidx.datastore:datastore-preferences-core` **1.2.1** *(Android-only in this module)*
 - `com.google.crypto.tink:tink-android` **1.21.0** *(Android-only)*
 - `androidx.security:security-crypto` **1.1.0-alpha06** *(Android-only, legacy migration source)*
-- `com.squareup.okio:okio` **3.10.2** *(Android-only in this module)*
+- `com.squareup.okio:okio` **3.10.2** *(the explicit catalog alias is only used by
+  `credential-manager-unified/` for its iOS DataStore `OkioStorage` path; the canonical Android
+  module uses DataStore `FileStorage`)*
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core` **1.10.2** *(Android-only — the iOS side is
   pure cinterop and Kotlin/Native built-ins; the `suspend` modifier on the common interface is
   a Kotlin-language feature and does not need this library in `commonMain`)*

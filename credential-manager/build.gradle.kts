@@ -54,10 +54,6 @@ kotlin {
             // module). See "Set up DataStore for KMP" —
             // developer.android.com/kotlin/multiplatform/datastore.
             implementation(libs.androidx.datastore.preferences.core)
-            // OkioStorage is the official KMP storage backend the Android docs recommend; we use
-            // it to keep parity with the Android KMP DataStore guide (FileStorage would also work
-            // here, but Okio keeps the code shape closest to the official sample).
-            implementation(libs.okio)
             // Legacy migration source. EncryptedSharedPreferences is officially deprecated
             // as of androidx.security:security-crypto 1.1.0; we keep it only to read tokens
             // written by the previous version of this sample.
